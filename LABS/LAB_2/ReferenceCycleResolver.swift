@@ -12,7 +12,7 @@ import Foundation
 // Решение кратко обоснуйте в блоке | Обоснование решения |.
 // Например: /* Я сделал …, т.к. это красиво */
 
-/* | Обоснование решения | */
+/* утечка из за замкнутого цикла сильных ссылок, нужно сделать слабую ссылку для одного из классов, сделал для студента, тк логичнее, можно было сделать через unowned, но используя weak сохраняется   опциональность  типов   */
 
 final class Student {
     let name: String
@@ -29,7 +29,7 @@ final class Student {
 final class University {
     let universityName: String
     
-    var student: Student?
+    weak var student: Student?
     
     init(universityName: String) {
         self.universityName = universityName
@@ -42,3 +42,4 @@ final class ReferenceCycleResolver {
         university.student = student
     }
 }
+
